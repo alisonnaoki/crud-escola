@@ -41,7 +41,7 @@ router.post('/professores', (req, res, next) => {
 
 
 router.get('/professores', (req, res, next) => {
-  res.json(professo)
+  res.json(professores)
 })
 
 
