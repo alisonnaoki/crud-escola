@@ -13,6 +13,19 @@ let professores = [
   }
 ]
 
+router.get('/professores', (req, res, next) => {
+  res.json(professores)
+})
+
+
+router.get('/professores/:id', (req, res, next) => {
+  const idRecebido = req.params.id
+  const professor = professor.find(a => a.id == idRecebido)
+  if (!professor) {
+    return res.status(404).json({ error: "Professor não encontrado!!!" })
+  }
+  res.json(professor)
+})
 
 router.post('/professores', (req, res, next) => {
   const { nome, cpf, email, curso, disciplina } = req.body
@@ -38,22 +51,6 @@ router.post('/professores', (req, res, next) => {
   professores.push(novoProfessor)
   res.status(201).json({ message: "Professor já cadastrado!!!", novoProfessor })
 })
-
-
-router.get('/professores', (req, res, next) => {
-  res.json(professores)
-})
-
-
-router.get('/professores/:id', (req, res, next) => {
-  const idRecebido = req.params.id
-  const professor = professor.find(a => a.id == idRecebido)
-  if (!professor) {
-    return res.status(404).json({ error: "Professor não encontrado!!!" })
-  }
-  res.json(professor)
-})
-
 
 router.put('/professores/:id', (req, res, next) => {
   const idRecebido = req.params.id

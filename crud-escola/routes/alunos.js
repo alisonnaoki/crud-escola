@@ -13,11 +13,23 @@ let alunos = [
   }
 ]
 
+router.get('/alunos', (req, res, next) => {
+  res.json(alunos)
+})
+
+router.get('/alunos/:id', (req, res, next) => {
+  const idRecebido = req.params.id
+  const aluno = alunos.find(a => a.id == idRecebido)
+  if (!aluno) {
+    return res.status(404).json({ error: "Aluno não encontrado!!!" })
+  }
+  res.json(aluno)
+})
 
 router.post('/alunos', (req, res, next) => {
   const { nome, cpf, email, telefone, dataNascimento } = req.body
 
-  if (!nome || !cpf || !email || !dataNascimento) {
+  if (!nome || !cpf || !email ||!telefone || !dataNascimento) {
     return res.status(400).json({ error: "nome, cpf, telefone e email e dataNascimento são obrigatorios!!!!" })
   }
 
@@ -38,22 +50,6 @@ router.post('/alunos', (req, res, next) => {
   alunos.push(novoAluno)
   res.status(201).json({ message: "Aluno já cadastrado!!!", novoAluno })
 })
-
-
-router.get('/alunos', (req, res, next) => {
-  res.json(alunos)
-})
-
-
-router.get('/alunos/:id', (req, res, next) => {
-  const idRecebido = req.params.id
-  const aluno = alunos.find(a => a.id == idRecebido)
-  if (!aluno) {
-    return res.status(404).json({ error: "Aluno não encontrado!!!" })
-  }
-  res.json(aluno)
-})
-
 
 router.put('/alunos/:id', (req, res, next) => {
   const idRecebido = req.params.id
