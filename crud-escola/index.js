@@ -12,9 +12,9 @@ app.use((req, res, next) => {
   next()
 })
 
-// Roteadores
-/*const  = require('./routes/')
-app.use(r)*/
+
+const Alunos = require('./routes/alunos')
+app.use(Alunos)
 
 
 app.listen(3000, () => {
