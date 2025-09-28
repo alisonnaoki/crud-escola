@@ -1,5 +1,5 @@
 const express = require('express')
-const app = express()os
+const app = express()
 const cors = require('cors')
 app.use(cors())
 app.use(express.json())
@@ -12,9 +12,9 @@ app.use((req, res, next) => {
   next()
 })
 
-// Roteadores
-/*const  = require('./routes/')
-app.use(r)*/
+
+const Alunos = require('./routes/alunos')
+app.use(Alunos)
 
 
 app.listen(3000, () => {
