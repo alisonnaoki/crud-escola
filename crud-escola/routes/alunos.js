@@ -17,8 +17,8 @@ let alunos = [
 router.post('/alunos', (req, res, next) => {
   const { nome, cpf, email, telefone, dataNascimento } = req.body
 
-  if (!nome || !cpf || !email ||!telefone|| !dataNascimento) {
-    return res.status(400).json({ error: "nome, cpf, email e dataNascimento são obrigatorios!!!!" })
+  if (!nome || !cpf || !email || !dataNascimento) {
+    return res.status(400).json({ error: "nome, cpf, telefone e email e dataNascimento são obrigatorios!!!!" })
   }
 
   const aluno = alunos.find(aluno => aluno.cpf == cpf)
@@ -35,7 +35,7 @@ router.post('/alunos', (req, res, next) => {
     dataNascimento
   }
 
-  pessoas.push(novoAluno)
+  alunos.push(novoAluno)
   res.status(201).json({ message: "Aluno já cadastrado!!!", novoAluno })
 })
 
@@ -55,7 +55,7 @@ router.get('/alunos/:id', (req, res, next) => {
 })
 
 
-router.put('/pessoas/:id', (req, res, next) => {
+router.put('/alunos/:id', (req, res, next) => {
   const idRecebido = req.params.id
   const { nome, email, telefone, dataNascimento } = req.body
 
